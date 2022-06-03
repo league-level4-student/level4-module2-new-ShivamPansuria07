@@ -2,6 +2,9 @@ package _03_Intro_to_Scanners;
 
 import java.util.Scanner;
 
+import _02_Generics_Store.Candy;
+import _02_Generics_Store.Cart;
+
 public class ScannerDemo {
 
     /*
@@ -24,7 +27,7 @@ public class ScannerDemo {
          * Eclipse's console. This may change depending on the environment where
          * are running your program or the input/output stream you are using.
          */
-
+    	Scanner<System.in> = new Scanner<System.in>;
         
         
         /*
