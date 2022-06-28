@@ -14,10 +14,21 @@ public class GoShopping {
 	// There is a generic Cart class that can hold different
 	// types of objects.
 	//
+	
+	
 	// Candy and Cereal are Food objects
 	// Clothing and Toy are NonFood objects.
 
 	public static void main(String[] args) {
+		Cart<Clothing> clothing = new Cart<Clothing>();
+		clothing.add(new Clothing());
+		Cart<Toy> toy = new Cart<Toy>();
+		toy.add(new Toy());
+		Cart<Cereal> cereal = new Cart<Cereal>();
+		cereal.add(new Cereal());
+		Cart<Candy> candy = new Cart<Candy>();
+		candy.add(new Candy());
+		boolean reciept = false;
 		// 2. Create a Cart object of type Candy
 
 		// 3. Create another Cart object of type Cereal
@@ -45,38 +56,53 @@ public class GoShopping {
 		while (!cart.contentEquals("checkout")) {
 		
 			if (cart.contentEquals("Clothing")) {
-				balance -= 10;
+				if(balance>=10) {
+					balance -= 10;
+				}else {
+					JOptionPane.showMessageDialog(null, "You do not have sufficient funds");
+					cart="checkout";
+				}
+				
 				subTotal.add("Clothing");
-				Cart<Clothing> clothing = new Cart<Clothing>();
-				clothing.add(new Clothing());
-				clothing.showCart();
+				
 				JOptionPane.showMessageDialog(null, "You currently have $ " + balance + " remaining");
 				
 			}
 			if (cart.contentEquals("Toy")) {
-				balance -= 3;
-				subTotal.add("Toy");
-				Cart<Toy> toy = new Cart<Toy>();
-				toy.add(new Toy());
-				toy.showCart();
-				JOptionPane.showMessageDialog(null, "You currently have $ " + balance + " remaining");
+				if(balance>=3) {
+					balance -= 3;
+				}else {
+					JOptionPane.showMessageDialog(null, "You do not have sufficient funds");
+					cart="checkout";
+				}
+				
+				
+				
+				JOptionPane.showMessageDialog(null, "You currently have $ " + balance + " remaining"); 
 				
 			}
 			if (cart.contentEquals("Cereal")) {
-				balance -= 5;
+				if(balance>=5) {
+					balance -= 5;
+				}else {
+					JOptionPane.showMessageDialog(null, "You do not have sufficient funds");
+					cart="checkout";
+				}
+				
 				subTotal.add("Cereal");
-				Cart<Cereal> cereal = new Cart<Cereal>();
-				cereal.add(new Cereal());
-				cereal.showCart();
+				
 				JOptionPane.showMessageDialog(null, "You currently have $ " + balance + " remaining");
 				
 			}
 			if(cart.contentEquals("Candy")) {
+				if(balance>=3) {
 				balance -= 3;
+				}else {
+					JOptionPane.showMessageDialog(null, "You do not have sufficient funds");
+					cart="checkout";
+				}
 				subTotal.add("Candy");
-				Cart<Candy> candy = new Cart<Candy>();
-				candy.add(new Candy());
-				candy.showCart();
+				
 				JOptionPane.showMessageDialog(null, "You currently have $ " + balance + " remaining");
 			
 		}
@@ -89,13 +115,37 @@ if(balance<15 && balance>=5) {
 		
 		}
         if(cart.contentEquals("checkout")) {
-        	String remove = JOptionPane.showInputDialog(null, "You currently have the items: " + subTotal.toString() + "\n type an item if you wish to remove it");
+        	String remove = JOptionPane.showInputDialog(null, "You currently have the items: " + subTotal.toString() + "\n type an item if you wish to remove it; otherwise press enter");
+        	if(remove.contentEquals("")) {
+        		reciept=true;
+        	}
         	for (int i = 0; i < subTotal.size(); i++) {
-				if(subTotal.get(i) == remove) {
+				if(subTotal.get(i).contentEquals(remove)) {
 					JOptionPane.showMessageDialog(null, "You have removed " + subTotal.get(i));
 					subTotal.remove(i);
+					reciept=true;
 						}
+				
 			}
+        	
+        	if(reciept) {
+        		for (int i = 0; i < subTotal.size(); i++) {
+    				if(subTotal.get(i).contentEquals("Clothing")) {
+    							clothing.showCart();
+    						}
+    				 if(subTotal.get(i).contentEquals("Toy")) {
+						toy.showCart();
+					}
+    				 if(subTotal.get(i).contentEquals("Cereal")) {
+    					cereal.showCart();
+					}
+    				 if(subTotal.get(i).contentEquals("Candy")) {
+    					candy.showCart();
+    					}
+    				}
+        		
+        		System.out.println("done");
+        	}
         }
 
 		// Why are there errors?
