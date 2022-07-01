@@ -29,7 +29,7 @@ public class Cart<T> {
 		}
 		JOptionPane.showMessageDialog(null, "Your cart is full!\nNo more than 5 items");
 	}
-
+//bruh
 	// Displays everything currently in the cart
 	public void showCart() {
 		JFrame frame = new JFrame();
