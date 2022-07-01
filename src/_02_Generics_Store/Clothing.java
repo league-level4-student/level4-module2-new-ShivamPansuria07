@@ -13,6 +13,10 @@ public class Clothing extends NonFood{
 	@Override
 	public JLabel getNonFood() {
 		// TODO Auto-generated method stub
+if(loadImage(this.item)==null) {
+			System.out.println("NULLL");
+		}
 		return new JLabel(loadImage(this.item));
+		
 	}
 }
